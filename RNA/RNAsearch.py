@@ -9,8 +9,8 @@ import re
 def INFERNAL2GFF3(INFERNAL_output):
     INFERNAL_output_gff = INFERNAL_output + '.gff'
     f = open(INFERNAL_output_gff,'w')
-    process = Popen(args=['awk','\'BEGIN {print "##gff-version 3"} NR>2{if($8 < $9 && $8 > 0) printf "$3\tinfernal\tmisc_RNA\t$8\t$9\t.\t$10\t.\tID=$3_infernal_$8_$9;Name=$1\n"}\'',INFERNAL_output], 
-                    stdout = f, stderr = PIPE)
+   process = Popen(args=['awk', r'BEGIN {print "##gff-version 3"} NR>2{if($8 < $9 && $8 > 0) printf "%s\tinfernal\tmisc_RNA\t%d\t%d\t.\t%s\t.\tID=%s_infernal_%s_%s;Name=%s\n" ,$3,$8,$9,$10,$3,$8,$9,$1}',INFERNAL_output], 
+                   stdout = f, stderr = PIPE)
     stdout, stderr = process.communicate()
     del stdout,stderr
 
