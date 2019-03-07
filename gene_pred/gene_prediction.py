@@ -76,29 +76,53 @@ def main():
 	parser.add_argument('-i', '--input',  help='Directory containing input genomes files (.fasta)', type=str, required=True)
 	parser.add_argument('-f', '--format', help='Output Format (gff, gbk, sqn, sco)', default='gff', type=str)
 	parser.add_argument('-g', '--genemark', help='Optional arg for using genemark', action='store_true')
+	parser.add_argument('-q', '--quiet', help='Flag to suppress verbose out for individual programs', action='store_true')
+	parser.add_argument('-v', '--verbose', help='Flag to display verbose for pipeline', action='store_true')
 	args = parser.parse_args()
 	# output dir for the rna results
 	out_dir_RNA = "./output/out_rna/"
 	# if gene mark need to be run on the contigs
 	if args.genemark:
+		if args.verbose:
+			print("Creating directories for GMS2 output")
 		createGMOutDirs()
+		if args.verbose:
+			print("Creating directories for Prodigal output")
 		createProdOutDirs()
 		gm_out_dir = "./output/out_gms2/"
 		prod_out_dir = "./output/out_prod/"
 		for file in os.listdir(args.input):
 			if os.path.isfile(args.input + file):
-				genemarkS2(args.input + file, gm_out_dir+file.split(".")[0], gm_out_dir+"nucl/"+file.split(".")[0], gm_out_dir+"prot/"+file.split(".")[0])
-				prodigal(args.input + file, prod_out_dir+file.split(".")[0], prod_out_dir+"nucl/"+file.split(".")[0], prod_out_dir+"prot/"+file.split(".")[0])
+				if args.verbose:
+					print("Starting GMS2 for {}".format(file))
+				genemarkS2(args.input + file, gm_out_dir+file.split(".")[0], gm_out_dir+"nucl/"+file.split(".")[0], gm_out_dir+"prot/"+file.split(".")[0], args.quiet)
+				if args.verbose:
+					print("Starting Prodigal for {}".format(file))
+				prodigal(args.input + file, prod_out_dir+file.split(".")[0], prod_out_dir+"nucl/"+file.split(".")[0], prod_out_dir+"prot/"+file.split(".")[0], , args.quiet)
+		if args.verbose:
+			print("Getting prodigal gene intersects")
 		getProdIntGene(args.input)
+		if args.verbose:
+			print("Getting gene mark gene intersects")
 		getGMIntGene(args.input)
+		if args.verbose:
+			print("Generating gene's union")
 		mergeGFF(args.input)
 	else:
+		if args.verbose:
+			print("Creating directories for Prodigal output")
 		createProdOutDirs()
 		prod_out_dir = "./output/out_prod/"
 		for file in os.listdir(args.input):
 			if os.path.isfile(args.input + file):
-				prodigal(args.input + file, prod_out_dir+file.split(".")[0], prod_out_dir+"nucl/"+file.split(".")[0], prod_out_dir+"prot/"+file.split(".")[0])
+				if args.verbose:
+					print("Starting Prodigal for {}".format(file))
+				prodigal(args.input + file, prod_out_dir+file.split(".")[0], prod_out_dir+"nucl/"+file.split(".")[0], prod_out_dir+"prot/"+file.split(".")[0], args.quiet)
+	if args.verbose:
+			print("Generating RNA files")
 	RNApredict(args.input)
+	if args.verbose:
+			print("Merging RNA results")
 	mergeRNAGFF(args.input)
 
 if __name__ == "__main__":
