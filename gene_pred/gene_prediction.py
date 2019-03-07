@@ -98,7 +98,7 @@ def main():
 				genemarkS2(args.input + file, gm_out_dir+file.split(".")[0], gm_out_dir+"nucl/"+file.split(".")[0], gm_out_dir+"prot/"+file.split(".")[0], args.quiet)
 				if args.verbose:
 					print("Starting Prodigal for {}".format(file))
-				prodigal(args.input + file, prod_out_dir+file.split(".")[0], prod_out_dir+"nucl/"+file.split(".")[0], prod_out_dir+"prot/"+file.split(".")[0], , args.quiet)
+				prodigal(args.input + file, prod_out_dir+file.split(".")[0], prod_out_dir+"nucl/"+file.split(".")[0], prod_out_dir+"prot/"+file.split(".")[0], args.quiet)
 		if args.verbose:
 			print("Getting prodigal gene intersects")
 		getProdIntGene(args.input)
@@ -119,10 +119,10 @@ def main():
 					print("Starting Prodigal for {}".format(file))
 				prodigal(args.input + file, prod_out_dir+file.split(".")[0], prod_out_dir+"nucl/"+file.split(".")[0], prod_out_dir+"prot/"+file.split(".")[0], args.quiet)
 	if args.verbose:
-			print("Generating RNA files")
+		print("Generating RNA files")
 	RNApredict(args.input)
 	if args.verbose:
-			print("Merging RNA results")
+		print("Merging RNA results")
 	mergeRNAGFF(args.input)
 
 if __name__ == "__main__":
