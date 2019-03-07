@@ -31,9 +31,9 @@ def getProdIntGene(argDir):
 	gm_out_dir = "./output/out_gms2/"
 	prod_out_dir = "./output/out_prod/"
 	for file in argDir:
-		fName = file.split()[0] + ".gff"
-		nFName = file.split()[0] + "_int1" + ".gff"
-		oFName = file.split()[0] + "_int2" + ".gff"
+		fName = file.split(".")[0] + ".gff"
+		nFName = file.split(".")[0] + "_int1" + ".gff"
+		oFName = file.split(".")[0] + "_int2" + ".gff"
 		subprocess.run(['bedtools', 'intersect', '-f', '1.0', '-r', '-v', '-wa', '-a', prod_out_dir+fName, '-b', gm_out_dir+fName, '>', prod_out_dir+nFName])
 		subprocess.run(['bedtools', 'intersect', '-f', '1.0', '-r', '-wa', '-a', prod_out_dir+fName, '-b', gm_out_dir+fName, '>', prod_out_dir+oFName])
 
@@ -41,20 +41,29 @@ def getGMIntGene(argDir):
 	gm_out_dir = "./output/out_gms2/"
 	prod_out_dir = "./output/out_prod/"
 	for file in argDir:
-		fName = file.split()[0] + ".gff"
-		nFName = file.split()[0] + "_int" + ".gff"
+		fName = file.split(".")[0] + ".gff"
+		nFName = file.split(".")[0] + "_int" + ".gff"
 		subprocess.run(['bedtools', 'intersect', '-f', '1.0', '-r', '-v', '-wa', '-a', gm_out_dir+fName, '-b', prod_out_dir+fName, '>', gm_out_dir+nFName])
 
 def mergeGFF(argDir):
-	out_dir = "/output/"
-	gm_out_dir = "/output/out_gms2/"
-	prod_out_dir = "/output/out_prod/"
+	out_dir = "./output/"
+	gm_out_dir = "./output/out_gms2/"
+	prod_out_dir = "./output/out_prod/"
 	for file in argDir:
-		fName = out_dir + file.split()[0] + "_final" + ".gff"
-		fName1 = gm_out_dir + file.split()[0] + "_int" + ".gff"
-		fName2 = prod_out_dir + file.split()[0] + "_int1" + ".gff"
-		fName3 = prod_out_dir + file.split()[0] + "_int2" + ".gff"
+		fName = out_dir + file.split(".")[0] + "_cds" + ".gff"
+		fName1 = gm_out_dir + file.split(".")[0] + "_int" + ".gff"
+		fName2 = prod_out_dir + file.split(".")[0] + "_int1" + ".gff"
+		fName3 = prod_out_dir + file.split(".")[0] + "_int2" + ".gff"
 		subprocess.run(['cat', fName1, fName2, fName3, '>', fName])
+
+def mergeRNAGFF(argDir):
+	out_dir = "./output/"
+	out_dir_RNA = "./output/out_rna/"
+	for file in argDir:
+		fName = out_dir + file.split(".")[0] + "_final" + ".gff"
+		fName1 = out_dir + file.split(".")[0] + "_cds" + ".gff"
+		fName2 = out_dir_RNA + file.split(".")[0] + ".rna_merge" + ".gff"
+		subprocess.run(['cat', fName1, fName2, '>', fName])
 
 def main():
 	parser = argparse.ArgumentParser(description='Gene Prediction tool')
@@ -63,6 +72,7 @@ def main():
 	parser.add_argument('-g', '--genemark', help='Optional arg for using genemark', action='store_true')
 	args = parser.parse_args()
 	
+	out_dir_RNA = "./output/out_rna/"
 	if args.genemark:
 		createGMOutDirs()
 		createProdOutDirs()
@@ -83,6 +93,7 @@ def main():
 			if os.path.isfile(args.input + file):
 				prodigal(args.input + file, prod_out_dir+file.split(".")[0], prod_out_dir+"nucl/"+file.split(".")[0], prod_out_dir+"prot/"+file.split(".")[0])
 	RNApredict(args.input)
+	mergeRNAGFF(args.input)
 
 if __name__ == "__main__":
 	main()
