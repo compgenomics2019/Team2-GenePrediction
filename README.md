@@ -1,5 +1,6 @@
 #Team2-GenePrediction
-##Requirements
+
+##Requirements \
 [Python3](https://www.python.org/downloads/release/python-372/) \
 [GeneValidator](https://genevalidator.wurmlab.com/) \
 [Prodigal](https://github.com/hyattpd/Prodigal) \
