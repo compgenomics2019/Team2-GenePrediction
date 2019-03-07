@@ -1,4 +1,10 @@
 # Team2-GenePrediction
+By: Sachin Kumar, Mansi Gupta, Vineeth Aljapur, Manu Tej Sharma Arrojwala, Mingming Cao
+
+## Overview
+This pipeline of gene prediction is part of outbreak detection project of Computational Genomics course.
+
+
 
 ## Requirements
 [Python3](https://www.python.org/downloads/release/python-372/) \
