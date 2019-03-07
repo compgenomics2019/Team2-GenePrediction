@@ -1,6 +1,6 @@
-#Team2-GenePrediction
+# Team2-GenePrediction
 
-##Requirements \
+## Requirements \
 [Python3](https://www.python.org/downloads/release/python-372/) \
 [GeneValidator](https://genevalidator.wurmlab.com/) \
 [Prodigal](https://github.com/hyattpd/Prodigal) \
@@ -11,6 +11,6 @@
 
 We recommend using [``conda``](https://conda.io/en/latest/) for install the python and other python modules.
 
-##QuickStart
+## QuickStart
 1. ``chmod 755 gene_prediction.py``
 2. ``gene_prediction.py -h``
