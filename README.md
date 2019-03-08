@@ -15,9 +15,15 @@ We recommend installing these dependencies from the links provided.
 [Glimmer](https://ccb.jhu.edu/software/glimmer/) To predict the genes \
 [Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) To validate the results\
 
-**RNA**
+
+**RNA Requirement**
 
 We recommend using [``conda``](https://conda.io/en/latest/) to install latest version of  python and other python modules.
+[Perl](https://www.perl.org/get.html) To ger Perl \ 
+[Aragorn](https://github.com/TheSEED/aragorn) Aragorn for tRNA and tmRNA prediction \
+[RNAmmer](http://www.cbs.dtu.dk/cgi-bin/sw_request?rnammer) RNAmmer for rRNA prediction \
+[Infernal](http://eddylab.org/infernal/) Infernal for misc_RNA prediction \
+Further, for gff file operations, [bedtools](https://github.com/arq5x/bedtools2/releases) are highly recommended.
 
 
 
