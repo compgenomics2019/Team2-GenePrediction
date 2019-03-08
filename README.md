@@ -30,3 +30,15 @@ Further, for gff file operations, [bedtools](https://github.com/arq5x/bedtools2/
 ## QuickStart
 1. ``chmod 755 gene_prediction.py``
 2. ``gene_prediction.py -h``
+
+## Usage
+./gene_prediction.py -i Input [-h] [-f Format] [-g] [-q] [-v]
+Required Arguments: 
+	-i 		--Input		Input folder containing contigs
+Optional Arguments:
+	-h 		--help		echos help message and exits
+	-f 		--Format	Output format (gff, gbk, sqn, sco)
+	-g 		--genemark 	To inculde GeneMark-S2 results
+	-q 		--quiet 	To supress text on terminal
+	-v 		--verbose 	To display running commands 	
+
