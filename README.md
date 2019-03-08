@@ -8,11 +8,11 @@ This pipeline includes tools like Prodigal, GeneMarkS2 for identifying genes and
 
 ## Requirements
 [Python3](https://www.python.org/downloads/release/python-372/) \
-[GeneValidator](https://genevalidator.wurmlab.com/) To validate the results
-[Prodigal](https://github.com/hyattpd/Prodigal) \
-[GeneMark-S2](http://exon.gatech.edu/GeneMark/license_download.cgi) \
-[Glimmer](https://ccb.jhu.edu/software/glimmer/) \
-[Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) \
+[GeneValidator](https://genevalidator.wurmlab.com/) To validate the results \
+[Prodigal](https://github.com/hyattpd/Prodigal) To predict the genes \
+[GeneMark-S2](http://exon.gatech.edu/GeneMark/license_download.cgi) To predict the genes \
+[Glimmer](https://ccb.jhu.edu/software/glimmer/) To predict the genes \
+[Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) To validate the results\
 
 **RNA**
 
