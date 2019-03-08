@@ -64,16 +64,25 @@ def ARAGORN (input_file,output_file):
 ''' 
     RNAmmer can also detects rRNA, but only have perl version
 '''
-
+# Because RNAmmer will generate gff version 2, we need to transfer it from 2 to 3.
+def RNAMMER2GFF3(RNAMMER_output):
+    
+    RNAMMER_output_gff3 = RNAMMER_output + '.gff'
+    f = open(RNAMMER_output_gff3,'w')
+    process = Popen(args=['awk', r'BEGIN {print "##gff-version 3"} NR>5{if($4 < $5 && $4 > 0 && $5 > 0) printf "%s\tRNAmmer-1.2\t%s\t%d\t%d\t%s\t%s\t.\tID=%s_rnammer_%s_%s;Name=%s\n" ,$1,$3,$4,$5,$6,$7,$1,$4,$5,$9}',RNAMMER_output], stdout = f, stderr = PIPE)
+    stdout, stderr = process.communicate()
+    del stdout,stderr
+    
 def RNAMMER (input_file,output_file):
     # For RNAMMER, the primary programs need to be modified
-    f = open(output_file,'w')
+
     process = Popen(args = ['rnammer',
                             '-S', 'bac'     # Kingdom us bacteria
-                            '-gff', 
+                            '-gff', output_file,
                             input_file],
-                            stdout = f, stderr = PIPE)
+                            stdout = PIPE, stderr = PIPE)
     stdout, stderr = process.communicate()
+    RNAMMER2GFF3(output_file)
     del stdout,stderr
 
     
@@ -129,7 +138,7 @@ def RNApredict(inputDir):
         out_dir_rRNA = "./output/out_rna/rnammer/"
         output_file_ncRNA = out_dir_ncRNA+file.split(".")[0]+'.ncRNA'
         output_file_tRNA = out_dir_tRNA+file.split(".")[0]+'.tRNA'
-        output_file_rRNA = out_dir_rRNA+file.split(".")[0]+'.rRNA.gff'
+        output_file_rRNA = out_dir_rRNA+file.split(".")[0]+'.rRNA'
 
         cpu_cores = '4'  # Get options to change the number of cores, should be string
 
