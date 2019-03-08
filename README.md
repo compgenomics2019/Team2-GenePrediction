@@ -19,7 +19,7 @@ We recommend installing these dependencies from the links provided.
 **RNA Requirement**
 
 We recommend using [``conda``](https://conda.io/en/latest/) to install latest version of  python and other python modules.\
-[Perl](https://www.perl.org/get.html) To ger Perl \ 
+[Perl](https://www.perl.org/get.html) To ger Perl  \
 [Aragorn](https://github.com/TheSEED/aragorn): Aragorn for tRNA and tmRNA prediction \
 [RNAmmer](http://www.cbs.dtu.dk/cgi-bin/sw_request?rnammer): RNAmmer for rRNA prediction \
 [Infernal](http://eddylab.org/infernal/): Infernal for misc_RNA prediction \
