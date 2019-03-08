@@ -7,7 +7,8 @@ This pipeline of gene prediction is part of outbreak detection project of Comput
 This pipeline includes tools like Prodigal, GeneMarkS2 for identifying genes and tools like Aragon, Infernal and RNAmmer for identifying non-coding regions of RNA. You can find further information on the tools from the links provided below.
 
 ## Requirements
-[Python3](https://www.python.org/downloads/release/python-372/) \
+We recommend installing these dependencies from the links provided. 
+[Python3](https://www.python.org/downloads/release/python-372/) To get python3 \
 [GeneValidator](https://genevalidator.wurmlab.com/) To validate the results \
 [Prodigal](https://github.com/hyattpd/Prodigal) To predict the genes \
 [GeneMark-S2](http://exon.gatech.edu/GeneMark/license_download.cgi) To predict the genes \
