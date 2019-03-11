@@ -7,7 +7,10 @@ This pipeline of gene prediction is part of outbreak detection project of Comput
 This pipeline includes tools like Prodigal, GeneMarkS2 for identifying genes and tools like Aragon, Infernal and RNAmmer for identifying non-coding regions of RNA. You can find further information on the tools from the links provided below.
 
 ## Requirements
-We recommend installing these dependencies from the links provided. 
+We recommend installing these dependencies from the links provided.
+
+We recommend using [conda](https://conda.io/en/latest/) to install latest version of  python and other python modules.\
+
 [Python3](https://www.python.org/downloads/release/python-372/) To get python3 \
 [GeneValidator](https://genevalidator.wurmlab.com/) To validate the results \
 [Prodigal](https://github.com/hyattpd/Prodigal) To predict the genes \
@@ -15,10 +18,6 @@ We recommend installing these dependencies from the links provided.
 [Glimmer](https://ccb.jhu.edu/software/glimmer/) To predict the genes \
 [Blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) To validate the results\
 
-
-**RNA Requirement**
-
-We recommend using [``conda``](https://conda.io/en/latest/) to install latest version of  python and other python modules.\
 [Perl](https://www.perl.org/get.html) To ger Perl  \
 [Aragorn](https://github.com/TheSEED/aragorn): Aragorn for tRNA and tmRNA prediction \
 [RNAmmer](http://www.cbs.dtu.dk/cgi-bin/sw_request?rnammer): RNAmmer for rRNA prediction \
@@ -28,17 +27,24 @@ Further, for gff file operations, [bedtools](https://github.com/arq5x/bedtools2/
 
 
 ## QuickStart
-1. ``chmod 755 gene_prediction.py``
-2. ``gene_prediction.py -h``
+```bash
+conda create --name gene_pred python=3.7
+conda activate gene_pred
+git clone https://github.gatech.edu/compgenomics2019/Team2-GenePrediction
+chmod 755 Team2-GenePrediction/gene_prediction.py
+export PATH=$PWD/Team2-GenePrediction:$PATH
 
-## Usage
-``./gene_prediction.py -i Input [-h] [-f Format] [-g] [-q] [-v]`` \
-Required Arguments: \
-	-i 		--Input		Input folder containing contigs \
-Optional Arguments: \
-	-h 		--help		echos help message and exits \
-	-f 		--Format	Output format (gff, gbk, sqn, sco) \
-	-g 		--genemark 	To inculde GeneMark-S2 results \
-	-q 		--quiet 	To supress text on terminal \
-	-v 		--verbose 	To display running commands	
+gene_prediction.py -h
 
+
+# Usage
+# ./gene_prediction.py -i Input [-h] [-f Format] [-g] [-q] [-v]
+# Required Arguments:
+# 	-i 		--Input			Input folder containing contigs
+# Optional Arguments:
+# 	-h 		--help			echos help message and exits
+#	 -f 		--Format			Output format (gff, gbk, sqn, sco)
+#	 -g 		--genemark			To inculde GeneMark-S2 results
+#	 -q 		--quiet			To supress text on terminal
+# 	-v 		--verbose			To display running commands
+```
