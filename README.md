@@ -49,7 +49,7 @@ gene_prediction.py -h
 # 	-v 		--verbose			To display running commands
 ```
 
-If you have a folder named 'assemblies' containing all fasta files, you can run the above pipeline as described in the following exam.
+If you have a folder named 'assemblies' containing all fasta files, you can run the above pipeline as described in the following example.
 
 ```bash
 # check the contents of the file
@@ -61,5 +61,34 @@ ls assemblies
 # CGT2060_contigs.fasta
 
 gene_prediction.py -i assemblies -q
+
+# check the generated output
+ls output
+# CGT2006_contigs_final.gff
+# CGT2010_contigs_final.gff
+# CGT2044_contigs_final.gff
+# CGT2049_contigs_final.gff
+# CGT2060_contigs_final.gff
+# out_prod
+# out_rna
+
+ls output/out_prod
+# CGT2006_contigs.gff
+# CGT2010_contigs.gff
+# CGT2044_contigs.gff
+# CGT2049_contigs.gff
+# CGT2060_contigs.gff
+# nucl
+# prot
+
+ls output/out_rna
+# aragorn
+# CGT2006_contigs.rna_merge.gff
+# CGT2010_contigs.rna_merge.gff
+# CGT2044_contigs.rna_merge.gff
+# CGT2049_contigs.rna_merge.gff
+# CGT2060_contigs.rna_merge.gff
+# infernal
+# rnammer
 
 ```
