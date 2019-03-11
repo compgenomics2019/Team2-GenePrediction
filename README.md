@@ -38,13 +38,28 @@ gene_prediction.py -h
 
 
 # Usage
-# ./gene_prediction.py -i Input [-h] [-f Format] [-g] [-q] [-v]
+# gene_prediction.py -i Input [-h] [-f Format] [-g] [-q] [-v]
 # Required Arguments:
-# 	-i 		--Input			Input folder containing contigs
+# 	-i 		--Input			Input folder containing genome assemblies
 # Optional Arguments:
 # 	-h 		--help			echos help message and exits
 #	 -f 		--Format			Output format (gff, gbk, sqn, sco)
 #	 -g 		--genemark			To inculde GeneMark-S2 results
 #	 -q 		--quiet			To supress text on terminal
 # 	-v 		--verbose			To display running commands
+```
+
+If you have a folder named 'assemblies' containing all fasta files, you can run the above pipeline as described in the following exam.
+
+```bash
+# check the contents of the file
+ls assemblies
+# CGT2006_contigs.fasta
+# CGT2010_contigs.fasta
+# CGT2044_contigs.fasta
+# CGT2049_contigs.fasta
+# CGT2060_contigs.fasta
+
+gene_prediction.py -i assemblies -q
+
 ```
