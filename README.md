@@ -2,7 +2,7 @@
 Developed By: Sachin Kumar, Mansi Gupta, Vineeth Aljapur, Manu Tej Sharma Arrojwala, Mingming Cao
 
 ## Overview
-This pipeline of gene prediction is part of outbreak detection project of Computational Genomics course. The goal of this pipeline is identify the coding regions of DNA. To do this we tried to quantitatively evaluate state of the art tools for our purpose and come up with a pipeline which gives out the best results according to our analysis.
+This pipeline of gene prediction is part of outbreak detection project of Computational Genomics course. The goal of this pipeline is identify the coding regions and non-coding regions of the genome. To do this we tried to quantitatively evaluate state of the art tools for our purpose and come up with a pipeline which gives out the best results according to our analysis. Beware, our pipeline has been optimized to work best on the *Salmonella enterica* genomes.
 
 This pipeline includes tools like Prodigal, GeneMarkS2 for identifying genes and tools like Aragon, Infernal and RNAmmer for identifying non-coding regions of RNA. You can find further information on the tools from the links provided below.
 
