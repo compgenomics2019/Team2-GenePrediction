@@ -44,7 +44,7 @@ def createGMOutDirs():
 def getGMIntGene(argDir):
 	gm_out_dir = "./output/out_gms2/"
 	prod_out_dir = "./output/out_prod/"
-	for file in argDir:
+	for file in os.listdir(argDir):
 		fName = file.split(".")[0] + ".gff"
 		nFName = file.split(".")[0] + "_int" + ".gff"
 		subprocess.run(['bedtools', 'intersect', '-f', '1.0', '-r', '-v', '-wa', '-a', gm_out_dir+fName, '-b', prod_out_dir+fName, '>', gm_out_dir+nFName])
@@ -54,7 +54,7 @@ def mergeGFF(argDir):
 	out_dir = "./output/"
 	gm_out_dir = "./output/out_gms2/"
 	prod_out_dir = "./output/out_prod/"
-	for file in argDir:
+	for file in os.listdir(argDir):
 		fName = out_dir + file.split(".")[0] + "_cds" + ".gff"
 		fName1 = gm_out_dir + file.split(".")[0] + "_int" + ".gff"
 		fName2 = prod_out_dir + file.split(".")[0] + ".gff"
@@ -66,7 +66,7 @@ def mergeRNAGFF(argDir, isGeneMark):
 	out_dir = "./output/"
 	prod_out_dir = "./output/out_prod/"
 	out_dir_RNA = "./output/out_rna/"
-	for file in argDir:
+	for file in os.listdir(argDir):
 		fName = out_dir + file.split(".")[0] + "_final" + ".gff"
 		fName1 = ""
 		if isGeneMark:
