@@ -63,18 +63,10 @@ def mergeGFF(argDir):
 
 # merges the genes with the rna content generated
 def mergeRNAGFF(argDir, isGeneMark):
-	out_dir = "./output/"
-	prod_out_dir = "./output/out_prod/"
-	out_dir_RNA = "./output/out_rna/"
-	for file in os.listdir(argDir):
-		fName = out_dir + file.split(".")[0] + "_final" + ".gff"
-		fName1 = ""
-		if isGeneMark:
-			fName1 = out_dir + file.split(".")[0] + "_cds" + ".gff"
-		else:
-			fName1 = prod_out_dir + file.split(".")[0] + ".gff"
-		fName2 = out_dir_RNA + file.split(".")[0] + ".rna_merge" + ".gff"
-		subprocess.run(['cat', fName1, fName2, '>', fName])
+	if isGeneMark:
+		subprocess.run(['./scripts/gene_pred_merge.sh', '-g', '-i', argDir])
+	else:
+		subprocess.run(['./scripts/gene_pred_merge.sh', '-i', argDir])
 
 def main():
 	parser = argparse.ArgumentParser(description='Gene Prediction tool')
@@ -86,7 +78,7 @@ def main():
 	args = parser.parse_args()
 	# output dir for the rna results
 	out_dir_RNA = "./output/out_rna/"
-	# if gene mark need to be run on the contigs
+	#if gene mark need to be run on the contigs
 	if args.genemark:
 		if args.verbose:
 			print("Creating directories for GMS2 output")
@@ -107,12 +99,12 @@ def main():
 		# if args.verbose:
 		# 	print("Getting prodigal gene intersects")
 		# getProdIntGene(args.input)
-		if args.verbose:
-			print("Getting gene mark gene intersects")
-		getGMIntGene(args.input)
-		if args.verbose:
-			print("Generating gene's union")
-		mergeGFF(args.input)
+		# if args.verbose:
+		# 	print("Getting gene mark gene intersects")
+		# getGMIntGene(args.input)
+		# if args.verbose:
+		# 	print("Generating gene's union")
+		# mergeGFF(args.input)
 	else:
 		if args.verbose:
 			print("Creating directories for Prodigal output")
@@ -127,7 +119,7 @@ def main():
 		print("Generating RNA files")
 	RNApredict(args.input)
 	if args.verbose:
-		print("Merging RNA results")
+		print("Merging RNA and CDS results")
 	mergeRNAGFF(args.input, args.genemark)
 
 if __name__ == "__main__":
