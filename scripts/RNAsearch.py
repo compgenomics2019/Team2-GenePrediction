@@ -29,14 +29,13 @@ def INFERNAL (input_file,database_path,output_file,cpu_cores):
     del stdout,stderr
 
     INFERNAL2GFF3(output_file)
-    return stdout
 
 ''' ARAGORN detects tRNA, mtRNA, and tmRNA genes
     By default, all RNA gene types above will be searched'''
 
 def ARAGORN2GFF3(ARAGORN_output):
     # For robust use, the path should be specified
-    ARAGRON_output_gff = ARAGORN_output[-28:] + '.gff'
+    ARAGRON_output_gff = ARAGORN_output + '.gff'
     f = open(ARAGRON_output_gff,'w')
     
     process = Popen(args = ['perl',                 # It's a perl script that use perl to run   
@@ -86,12 +85,12 @@ def RNAMMER (input_file,output_file):
     del stdout,stderr
 
     
-def RNAmerge(file_1,file_2):
+def RNAmerge(file_1, file_2, name):
     list_f1 = []
     list_f2 = []
     list_merge = ["##gff-version 3\n"]
     out_dir_RNA = "./output/out_rna/"
-    merge_file = file1.split(".")[0]+'.rna_merge.gff'
+    merge_file = name+'.rna_merge.gff'
     with open(file_1,'r') as f1:
         for line in f1:
             if not re.match("##",line):
@@ -109,7 +108,7 @@ def RNAmerge(file_1,file_2):
                 list_merge.append(list_f1[i]);break
             else:
                 list_merge.append(list_f2[j]);k += 1
-    with open(merge_file,'w') as f3:
+    with open(out_dir_RNA+merge_file,'w') as f3:
         for line in list_merge:
             f3.write(line)
     f3.close()  
@@ -120,11 +119,11 @@ def createRNAOutDirs():
     if not os.path.exists(os.getcwd()+"/output/out_rna/"):
         os.makedirs(os.getcwd()+"/output/out_rna")
     if not os.path.exists(os.getcwd()+"/output/out_rna/infernal"):
-        os.makedirs(os.getcwd()+"/output/out_prod/infernal")
+        os.makedirs(os.getcwd()+"/output/out_rna/infernal")
     if not os.path.exists(os.getcwd()+"/output/out_rna/aragorn"):
-        os.makedirs(os.getcwd()+"/output/out_prod/aragorn")
+        os.makedirs(os.getcwd()+"/output/out_rna/aragorn")
     if not os.path.exists(os.getcwd()+"/output/out_rna/rnammer"):
-        os.makedirs(os.getcwd()+"/output/out_prod/rnammer")
+        os.makedirs(os.getcwd()+"/output/out_rna/rnammer")
 
 def RNApredict(inputDir):
     pass
@@ -154,8 +153,8 @@ def RNApredict(inputDir):
         RNAMMER(inputDir+file, output_file_rRNA)
         
         # if doncRNA and dotRNA and dorRNA:
-        RNAmerge(output_file_ncRNA+".gff", output_file_tRNA+".gff")
-        RNAmerge(out_dir_RNA+file.split(".")[0]+'.rna_merge.gff', output_file_rRNA)
+        RNAmerge(output_file_ncRNA+".gff", output_file_tRNA+".gff", file.split(".")[0])
+        RNAmerge(out_dir_RNA+file.split(".")[0]+'.rna_merge.gff', output_file_rRNA+".gff", file.split(".")[0])
     # elif doncRNA and dotRNA:
         # RNAmerge(output_file_ncRNA,output_file_tRNA)
     # elif doncRNA and dorRNA:
