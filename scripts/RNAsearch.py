@@ -2,7 +2,7 @@
 
 from subprocess import Popen, PIPE
 
-import re
+import re, os
 
 '''Infernal detects ncRNA from Rfam'''
 
